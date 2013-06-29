@@ -7,6 +7,7 @@ public class Game extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L;
 	
 	private volatile boolean running = false;
+	private volatile boolean gameOver = false;
 
 	public void run() {
 		while (running) {
