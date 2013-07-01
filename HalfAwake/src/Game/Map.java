@@ -18,6 +18,9 @@ public class Map {
 	
 	void draw()
 	{
-		
+		for(MapObject object : objects)
+		{
+			// draw the object
+		}
 	}
 }
