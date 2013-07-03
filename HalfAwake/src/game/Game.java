@@ -8,27 +8,36 @@ class Game extends Canvas implements Runnable {
 	
 	private volatile boolean running = false;
 	private volatile boolean gameOver = false;
-
+	private Thread animator;
+	
 	public void run() {
-		while (running) {
-			
+		init();
+		
+		while(running) {
+			update();
+			render();
 		}
 	}
 	
 	public void start() {
 		running = true;
-		new Thread(this).start();
+		animator = new Thread(this);
+		animator.start();
 	}
 	
-	public void init() {
+	public void stop() {
+		running = false;
+	}
+	
+	private void init() {
 		
 	}
 	
-	public void render() {
+	private void render() {
 		
 	}
 
-	public void update() {
+	private void update() {
 		
 	}
 }
