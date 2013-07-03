@@ -1,8 +1,9 @@
-package Game;
+package game;
 
 import java.util.Set;
 
-public class Map {
+
+class Map {
 	
 	Set <MapObject> objects;
 	
