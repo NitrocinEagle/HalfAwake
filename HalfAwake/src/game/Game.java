@@ -32,7 +32,7 @@ class Game extends Canvas implements Runnable {
 	private void init() {
 		
 	}
-	
+	//пОВАР ААХ
 	private void render() {
 		
 	}
