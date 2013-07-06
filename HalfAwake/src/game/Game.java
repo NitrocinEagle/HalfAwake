@@ -21,7 +21,8 @@ class Game extends Canvas implements Runnable {
 	
 	public void start() {
 		running = true;
-		animator = new Thread(this);
+		if (animator == null)
+			animator = new Thread(this);
 		animator.start();
 	}
 	
@@ -32,7 +33,7 @@ class Game extends Canvas implements Runnable {
 	private void init() {
 		
 	}
-	
+	//пОВАР ААХ
 	private void render() {
 		
 	}
