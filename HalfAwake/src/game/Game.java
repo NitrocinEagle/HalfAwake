@@ -28,7 +28,7 @@ class Game extends Canvas implements Runnable {
 	public void stop() {
 		running = false;
 	}
-	
+	//Я не комент ахахаха. Я повар 
 	private void init() {
 		
 	}
