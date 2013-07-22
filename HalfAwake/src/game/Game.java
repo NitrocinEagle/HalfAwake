@@ -5,6 +5,7 @@ import java.awt.Canvas;
 class Game extends Canvas implements Runnable {
 	
 	private static final long serialVersionUID = 1L;
+	private static final int TIME_TO_SLEEP = 20; // milliseconds, sleep before render 
 	
 	private volatile boolean running = false;
 	private volatile boolean gameOver = false;
@@ -16,6 +17,12 @@ class Game extends Canvas implements Runnable {
 		while(running) {
 			update();
 			render();
+			paintScreen();
+			
+			try {
+				Thread.sleep(TIME_TO_SLEEP);
+			}
+			catch (InterruptedException e) {}
 		}
 	}
 	
@@ -33,12 +40,18 @@ class Game extends Canvas implements Runnable {
 	private void init() {
 		
 	}
+
+	private void update() {
+		if (!gameOver) {
+			// update game state
+		}
+	}
 	
 	private void render() {
 		
 	}
-
-	private void update() {
+	
+	private void paintScreen() {
 		
 	}
 }
