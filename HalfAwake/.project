@@ -14,21 +14,4 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>boom.jpg</name>
-			<type>1</type>
-			<location>/home/leo/git/HalfAwake/HalfAwake/boom.jpg</location>
-		</link>
-		<link>
-			<name>floor.jpg</name>
-			<type>1</type>
-			<location>/home/leo/git/HalfAwake/HalfAwake/floor.jpg</location>
-		</link>
-		<link>
-			<name>table.jpg</name>
-			<type>1</type>
-			<location>/home/leo/git/HalfAwake/HalfAwake/table.jpg</location>
-		</link>
-	</linkedResources>
 </projectDescription>
