@@ -10,13 +10,18 @@ class Map {
 
     Dimension size;
     public boolean addObject(MapObject object) {
-	grid[object.coordinates.x][object.coordinates.y] = object;
+	grid[object.coordinates.y][object.coordinates.x] = object;
 	return objects.add(object);
     }
     
-    public void objectMove(int oldX, int oldY, int x, int y) {
-	grid[x][y] = grid[oldX][oldY];
-	grid[oldX][oldY] = null;
+    public boolean objectMove(int oldX, int oldY, int x, int y) {
+	try {
+	    grid[y][x] = grid[oldY][oldX];
+	    grid[oldY][oldX] = null;
+	} catch (ArrayIndexOutOfBoundsException e) {
+	    return false;
+	}
+	return true;
     }
 
     public Map(int width, int height) {

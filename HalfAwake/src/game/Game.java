@@ -65,16 +65,20 @@ class Game extends Canvas implements Runnable {
 	    public void keyPressed(KeyEvent e) {
 		switch(e.getKeyCode()) {
 		case KeyEvent.VK_LEFT:
-		    --hero.coordinates.x;
+		    if (map.objectMove(hero.coordinates.x, hero.coordinates.y, hero.coordinates.x-1, hero.coordinates.y))
+			--hero.coordinates.x;
 		    break;
 		case KeyEvent.VK_RIGHT:
-		    ++hero.coordinates.x;
+		    if (map.objectMove(hero.coordinates.x, hero.coordinates.y, hero.coordinates.x+1, hero.coordinates.y))
+			++hero.coordinates.x;
 		    break;
 		case KeyEvent.VK_UP:
-		    --hero.coordinates.y;
+		    if (map.objectMove(hero.coordinates.x, hero.coordinates.y, hero.coordinates.x, hero.coordinates.y-1))
+			--hero.coordinates.y;
 		    break;
 		case KeyEvent.VK_DOWN:
-		    ++hero.coordinates.y;
+		    if (map.objectMove(hero.coordinates.x, hero.coordinates.y, hero.coordinates.x, hero.coordinates.y+1))
+			++hero.coordinates.y;
 		    break;
 		default:
 		    break;
