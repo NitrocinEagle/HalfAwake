@@ -1,9 +1,17 @@
 package game;
 
+import game.personages.Hero;
+
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 class Game extends Canvas implements Runnable {
 
@@ -14,7 +22,10 @@ class Game extends Canvas implements Runnable {
     private volatile boolean gameOver = false;
     private Thread animator;
 
-    BufferStrategy bs;
+    private BufferStrategy bs;
+
+    private Map map;
+    private Hero hero;
 
     public void run() {
 	init();
@@ -42,7 +53,35 @@ class Game extends Canvas implements Runnable {
     }
 
     private void init() {
+	try {
+	    map = new Map(getWidth(), getHeight());
+	    hero = new Hero(ImageIO.read(new File("head.jpg")), getWidth()/2, getHeight()/2);
+	} catch (IOException e) {
+	    System.exit(1);
+	}
+	map.addObject(hero);
 
+	addKeyListener(new KeyAdapter() {
+	    public void keyPressed(KeyEvent e) {
+		switch(e.getKeyCode()) {
+		case KeyEvent.VK_LEFT:
+		    --hero.coordinates.x;
+		    break;
+		case KeyEvent.VK_RIGHT:
+		    ++hero.coordinates.x;
+		    break;
+		case KeyEvent.VK_UP:
+		    --hero.coordinates.y;
+		    break;
+		case KeyEvent.VK_DOWN:
+		    ++hero.coordinates.y;
+		    break;
+		default:
+		    break;
+		}
+
+	    }
+	});
     }
 
     private void update() {
@@ -50,14 +89,16 @@ class Game extends Canvas implements Runnable {
 	    // update game state
 	}
     }
-    
+
     public void paint(Graphics g) {
 	if (bs == null) {
 	    createBufferStrategy(2);
 	    bs = getBufferStrategy();
 	}
-	
+
 	g.setColor(Color.black);
-        g.fillRect(0, 0,  getWidth(), getHeight());
+	g.fillRect(0, 0,  getWidth(), getHeight());
+
+	map.draw(g);
     }
 }

@@ -1,22 +1,24 @@
 package game;
 
-import java.util.Set;
-
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.util.ArrayList;
 
 class Map {
-    Set <MapObject> objects;
+    ArrayList<MapObject> objects = new ArrayList<>();
     
+    Dimension size;
     boolean addObject(MapObject object) {
 	return objects.add(object);
     }
 
     Map(int widith, int height) {
-
+	size = new Dimension(widith, height);
     }
 
-    void draw() {
+    void draw(Graphics g) {
 	for(MapObject object : objects) {
-	    // draw the object
+	    g.drawImage(object.sprite, object.coordinates.x, object.coordinates.y, null);
 	}
     }
 }
