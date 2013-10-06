@@ -2,13 +2,19 @@ package game;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
+
 class Map {
+    Dimension size;
     MapObject[][] grid;
     ArrayList<MapObject> objects = new ArrayList<>();
-
-    Dimension size;
+    Image floor;
+    
     public boolean addObject(MapObject object) {
 	grid[object.coordinates.y][object.coordinates.x] = object;
 	return objects.add(object);
@@ -26,12 +32,17 @@ class Map {
 	return true;
     }
 
-    public Map(int width, int height) {
+    public Map(int width, int height) throws IOException {
 	size = new Dimension(width, height);
+	floor = ImageIO.read(new File("floor.jpg"));
 	grid = new MapObject[height/50][width/50];
     }
 
     public void draw(Graphics g) {
+	for (int i = 0; i < size.width; i += 50)
+	    for (int j = 0; j < size.height; j += 50)
+		g.drawImage(floor, i, j, null);
+	
 	for(MapObject object : objects) {
 	    g.drawImage(object.sprite, object.coordinates.x*50, object.coordinates.y*50, null);
 	}

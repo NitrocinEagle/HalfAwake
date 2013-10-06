@@ -2,37 +2,32 @@ package game;
 
 import game.personages.Hero;
 
-import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferStrategy;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.JPanel;
 
-class Game extends Canvas implements Runnable {
-
+class Game extends JPanel implements Runnable {
     private static final long serialVersionUID = 1L;
-    private static final int TIME_TO_SLEEP = 20; // milliseconds, sleep before render 
+    private static final int FPS = 25;
+    private static final int TIME_TO_SLEEP = 1000/FPS; // milliseconds, sleep before render 
 
     private volatile boolean running = false;
-    private volatile boolean gameOver = false;
     private Thread animator;
-
-    private BufferStrategy bs;
 
     private Map map;
     private Hero hero;
+    
 
     public void run() {
 	init();
 
 	while(running) {
-	    update();
-
 	    try {
 		Thread.sleep(TIME_TO_SLEEP);
 		repaint();
@@ -42,6 +37,9 @@ class Game extends Canvas implements Runnable {
     }
 
     public void start() {
+	setFocusable(true);
+	requestFocusInWindow();
+	
 	running = true;
 	if (animator == null)
 	    animator = new Thread(this);
@@ -83,26 +81,13 @@ class Game extends Canvas implements Runnable {
 		default:
 		    break;
 		}
-
 	    }
 	});
     }
 
-    private void update() {
-	if (!gameOver) {
-	    // update game state
-	}
-    }
-
     public void paint(Graphics g) {
-	if (bs == null) {
-	    createBufferStrategy(2);
-	    bs = getBufferStrategy();
-	}
-
 	g.setColor(Color.black);
 	g.fillRect(0, 0,  getWidth(), getHeight());
-
 	map.draw(g);
     }
 }
