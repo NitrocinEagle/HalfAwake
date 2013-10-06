@@ -3,7 +3,7 @@ package game;
 import java.awt.Image;
 
 
-public class MapObject {
+public abstract class MapObject {
 	public Image sprite;
 	public Coordinates coordinates;
 	
@@ -11,4 +11,6 @@ public class MapObject {
 		coordinates = new Coordinates(x, y);
 		this.sprite = image;
 	}
+
+	abstract public boolean performDefaultAction();
 }

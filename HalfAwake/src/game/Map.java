@@ -47,4 +47,14 @@ class Map {
 	    g.drawImage(object.sprite, object.coordinates.x*50, object.coordinates.y*50, null);
 	}
     }
+
+    public boolean performDefaultAction(int x, int y) {
+	try {
+	    if (grid[y][x] == null)
+		return false;
+	    return grid[y][x].performDefaultAction();
+	} catch (ArrayIndexOutOfBoundsException e) {
+	    return false;
+	}
+    }
 }

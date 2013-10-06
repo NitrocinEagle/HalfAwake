@@ -1,5 +1,6 @@
 package game;
 
+import game.objects.Table;
 import game.personages.Hero;
 
 import java.awt.Color;
@@ -22,7 +23,9 @@ class Game extends JPanel implements Runnable {
 
     private Map map;
     private Hero hero;
+    private Table table;
     
+    private Direction direction = Direction.DOWN;
 
     public void run() {
 	init();
@@ -53,31 +56,48 @@ class Game extends JPanel implements Runnable {
     private void init() {
 	try {
 	    map = new Map(getWidth(), getHeight());
-	    hero = new Hero(ImageIO.read(new File("head.jpg")), 0, 0);
+	    hero = new Hero(0, 0);
+	    table = new Table(3, 3);
 	} catch (IOException e) {
 	    System.exit(1);
 	}
 	map.addObject(hero);
+	map.addObject(table);
 
 	addKeyListener(new KeyAdapter() {
 	    public void keyPressed(KeyEvent e) {
 		switch(e.getKeyCode()) {
 		case KeyEvent.VK_LEFT:
+		    direction = Direction.LEFT;
 		    if (map.objectMove(hero.coordinates.x, hero.coordinates.y, hero.coordinates.x-1, hero.coordinates.y))
 			--hero.coordinates.x;
 		    break;
 		case KeyEvent.VK_RIGHT:
+		    direction = Direction.RIGHT;
 		    if (map.objectMove(hero.coordinates.x, hero.coordinates.y, hero.coordinates.x+1, hero.coordinates.y))
 			++hero.coordinates.x;
 		    break;
 		case KeyEvent.VK_UP:
+		    direction = Direction.UP;
 		    if (map.objectMove(hero.coordinates.x, hero.coordinates.y, hero.coordinates.x, hero.coordinates.y-1))
 			--hero.coordinates.y;
 		    break;
 		case KeyEvent.VK_DOWN:
+		    direction = Direction.DOWN;
 		    if (map.objectMove(hero.coordinates.x, hero.coordinates.y, hero.coordinates.x, hero.coordinates.y+1))
 			++hero.coordinates.y;
 		    break;
+		case KeyEvent.VK_E:
+		    int x = hero.coordinates.x;
+		    int y = hero.coordinates.y;
+		    
+		    switch (direction) {
+		    case LEFT: --x; break;
+		    case RIGHT: ++x; break;
+		    case UP: --y; break;
+		    case DOWN: ++y; break;
+		    }
+		    map.performDefaultAction(x, y);
 		default:
 		    break;
 		}

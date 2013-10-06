@@ -1,12 +1,20 @@
 package game.personages;
 
 import game.MapObject;
-import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 public class Hero extends MapObject {
     
-    public Hero(Image image, int x, int y) {
-	super(image, x, y);
+    public Hero(int x, int y) throws IOException {
+	super(ImageIO.read(new File("head.jpg")), x, y);
+    }
+
+    @Override
+    public boolean performDefaultAction() {
+	return false;
     }
 
 }
