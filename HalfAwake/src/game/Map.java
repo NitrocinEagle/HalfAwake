@@ -15,9 +15,9 @@ class Map {
     }
     
     public boolean objectMove(int oldX, int oldY, int x, int y) {
-	if (grid[y][x] != null)
-		return false;
 	try {
+	    if (grid[y][x] != null)
+		return false;
 	    grid[y][x] = grid[oldY][oldX];
 	    grid[oldY][oldX] = null;
 	} catch (ArrayIndexOutOfBoundsException e) {
