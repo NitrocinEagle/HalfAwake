@@ -15,6 +15,8 @@ class Map {
     }
     
     public boolean objectMove(int oldX, int oldY, int x, int y) {
+	if (grid[y][x] != null)
+		return false;
 	try {
 	    grid[y][x] = grid[oldY][oldX];
 	    grid[oldY][oldX] = null;
