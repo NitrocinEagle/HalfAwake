@@ -55,7 +55,7 @@ class Game extends Canvas implements Runnable {
     private void init() {
 	try {
 	    map = new Map(getWidth(), getHeight());
-	    hero = new Hero(ImageIO.read(new File("head.jpg")), getWidth()/2, getHeight()/2);
+	    hero = new Hero(ImageIO.read(new File("head.jpg")), 0, 0);
 	} catch (IOException e) {
 	    System.exit(1);
 	}
