@@ -12,5 +12,5 @@ public abstract class MapObject {
 		this.sprite = image;
 	}
 
-	abstract public boolean performDefaultAction();
+	abstract public boolean performDefaultAction(Map map);
 }

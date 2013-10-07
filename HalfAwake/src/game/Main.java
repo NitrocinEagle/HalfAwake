@@ -19,6 +19,6 @@ public class Main {
 	frame.setVisible(true);
 
 	frame.setLocation(100, 100);
-	game.start();
+	game.start();	
     }
 }
