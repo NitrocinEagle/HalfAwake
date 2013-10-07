@@ -7,10 +7,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.io.File;
 import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 class Game extends JPanel implements Runnable {
@@ -24,8 +22,6 @@ class Game extends JPanel implements Runnable {
     private Map map;
     private Hero hero;
     private Table table;
-    
-    private Direction direction = Direction.DOWN;
 
     public void run() {
 	init();
@@ -42,7 +38,7 @@ class Game extends JPanel implements Runnable {
     public void start() {
 	setFocusable(true);
 	requestFocusInWindow();
-	
+
 	running = true;
 	if (animator == null)
 	    animator = new Thread(this);
@@ -68,30 +64,30 @@ class Game extends JPanel implements Runnable {
 	    public void keyPressed(KeyEvent e) {
 		switch(e.getKeyCode()) {
 		case KeyEvent.VK_LEFT:
-		    direction = Direction.LEFT;
+		    hero.direction = Direction.LEFT;
 		    if (map.objectMove(hero.coordinates.x, hero.coordinates.y, hero.coordinates.x-1, hero.coordinates.y))
 			--hero.coordinates.x;
 		    break;
 		case KeyEvent.VK_RIGHT:
-		    direction = Direction.RIGHT;
+		    hero.direction = Direction.RIGHT;
 		    if (map.objectMove(hero.coordinates.x, hero.coordinates.y, hero.coordinates.x+1, hero.coordinates.y))
 			++hero.coordinates.x;
 		    break;
 		case KeyEvent.VK_UP:
-		    direction = Direction.UP;
+		    hero.direction = Direction.UP;
 		    if (map.objectMove(hero.coordinates.x, hero.coordinates.y, hero.coordinates.x, hero.coordinates.y-1))
 			--hero.coordinates.y;
 		    break;
 		case KeyEvent.VK_DOWN:
-		    direction = Direction.DOWN;
+		    hero.direction = Direction.DOWN;
 		    if (map.objectMove(hero.coordinates.x, hero.coordinates.y, hero.coordinates.x, hero.coordinates.y+1))
 			++hero.coordinates.y;
 		    break;
 		case KeyEvent.VK_E:
 		    int x = hero.coordinates.x;
 		    int y = hero.coordinates.y;
-		    
-		    switch (direction) {
+
+		    switch (hero.direction) {
 		    case LEFT: --x; break;
 		    case RIGHT: ++x; break;
 		    case UP: --y; break;
