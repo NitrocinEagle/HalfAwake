@@ -1,5 +1,6 @@
 package game;
 
+import game.objects.Direction;
 import game.objects.Table;
 import game.objects.personages.Hero;
 

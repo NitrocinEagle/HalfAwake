@@ -1,7 +1,7 @@
 package game.objects.personages;
 
-import game.Direction;
 import game.Map;
+import game.objects.Direction;
 import game.objects.MapObject;
 
 import java.io.File;
