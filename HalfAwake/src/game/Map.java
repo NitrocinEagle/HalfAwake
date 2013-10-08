@@ -1,5 +1,6 @@
 package game;
 
+import game.objects.Direction;
 import game.objects.MapObject;
 
 import java.awt.Dimension;
@@ -8,7 +9,6 @@ import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javax.imageio.ImageIO;
 
 public class Map {
@@ -36,12 +36,24 @@ public class Map {
 	return true;
     }
 
-    public boolean objectMove(int oldX, int oldY, int x, int y) {
+    public boolean objectMove(int x, int y, Direction direction) {
 	try {
-	    if (grid[y][x] != null)
+	    if (grid[y][x] == null)
 		return false;
-	    grid[y][x] = grid[oldY][oldX];
-	    grid[oldY][oldX] = null;
+	    
+	    int newX = x, newY = y;
+	    switch (direction) {
+	    case UP: newY -= 1; break;
+	    case DOWN: newY += 1; break;
+	    case LEFT: newX -= 1; break;
+	    case RIGHT: newX += 1; break;
+	    }
+	    if (grid[newY][newX] != null)
+		return false;
+	    	    
+	    grid[newY][newX] = grid[y][x];
+	    grid[newY][newX].setCoordinates(newX, newY);
+	    grid[y][x] = null;
 	} catch (ArrayIndexOutOfBoundsException e) {
 	    return false;
 	}

@@ -24,4 +24,9 @@ public abstract class MapObject {
     }
 
     abstract public boolean performDefaultAction();
+
+    public void setCoordinates(int x, int y) {
+	coordinates.x = x;
+	coordinates.y = y;
+    }
 }

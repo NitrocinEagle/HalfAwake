@@ -20,33 +20,6 @@ public class Hero extends MapObject {
 
     public boolean move(Direction direction) {
 	this.direction = direction;
-	switch(direction) {
-	case LEFT:
-	    if (map.objectMove(coordinates.x, coordinates.y, coordinates.x-1, coordinates.y)) {
-		--coordinates.x;
-		return true;
-	    }
-	    break;
-	case RIGHT:
-	    if (map.objectMove(coordinates.x, coordinates.y, coordinates.x+1, coordinates.y)) {
-		++coordinates.x;
-		return true;
-	    }
-	    break;
-	case UP:
-	    if (map.objectMove(coordinates.x, coordinates.y, coordinates.x, coordinates.y-1)) {
-		--coordinates.y;
-		return true;
-	    }
-	    break;
-	case DOWN:
-	    if (map.objectMove(coordinates.x, coordinates.y, coordinates.x, coordinates.y+1)) {
-		++coordinates.y;
-		return true;
-	    }
-	    break;
-	}
-	return false;
+	return map.objectMove(coordinates.x, coordinates.y, direction);
     }
-
 }
