@@ -1,7 +1,7 @@
 package game;
 
 import game.objects.Table;
-import game.personages.Hero;
+import game.objects.personages.Hero;
 
 import java.awt.Color;
 import java.awt.Graphics;

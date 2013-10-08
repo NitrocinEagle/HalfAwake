@@ -1,5 +1,7 @@
 package game;
 
+import game.objects.MapObject;
+
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;

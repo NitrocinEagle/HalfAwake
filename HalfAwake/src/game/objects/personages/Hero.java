@@ -1,8 +1,8 @@
-package game.personages;
+package game.objects.personages;
 
 import game.Direction;
 import game.Map;
-import game.MapObject;
+import game.objects.MapObject;
 
 import java.io.File;
 import java.io.IOException;

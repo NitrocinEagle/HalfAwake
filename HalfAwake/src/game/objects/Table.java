@@ -1,7 +1,6 @@
 package game.objects;
 
 import game.Map;
-import game.MapObject;
 
 import java.io.File;
 import java.io.IOException;
