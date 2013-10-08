@@ -60,6 +60,7 @@ class Game extends JPanel implements Runnable {
 
 	addKeyListener(new KeyAdapter() {
 	    public void keyPressed(KeyEvent e) {
+		// TODO: make a dictionary with keys and directions
 		switch(e.getKeyCode()) {
 		case KeyEvent.VK_LEFT:
 		    hero.move(Direction.LEFT);

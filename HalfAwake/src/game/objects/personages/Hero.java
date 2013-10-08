@@ -19,6 +19,8 @@ public class Hero extends MapObject {
     }
 
     public boolean move(Direction direction) {
+	if (direction == null)
+	    return false;
 	this.direction = direction;
 	return map.objectMove(coordinates.x, coordinates.y, direction);
     }
