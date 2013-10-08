@@ -10,15 +10,16 @@ import javax.imageio.ImageIO;
 
 public class Table extends MapObject {
 
-    public Table(int x, int y) throws IOException {
-	super(ImageIO.read(new File("table.jpg")), x, y);
+    public Table(Map map, int x, int y) throws IOException {
+	super(ImageIO.read(new File("table.jpg")), map, x, y);
     }
 
-    public boolean performDefaultAction(Map map) {
+    public boolean performDefaultAction() {
 	try {
 	    sprite = ImageIO.read(new File("boom.jpg"));
 	} catch (IOException e) { return false; }
 
+	// TODO: replace this mechanism to Map class
 	class TableRemover extends Thread {
 	    Table table;
 	    Map map;

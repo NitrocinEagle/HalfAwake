@@ -53,6 +53,7 @@ public class Map {
     }
 
     public void draw(Graphics g) {
+	// TODO: create mechanism of background drawing
 	for (int i = 0; i < size.width; i += 50)
 	    for (int j = 0; j < size.height; j += 50)
 		g.drawImage(floor, i, j, null);
@@ -66,7 +67,7 @@ public class Map {
 	try {
 	    if (grid[y][x] == null)
 		return false;
-	    return grid[y][x].performDefaultAction(this);
+	    return grid[y][x].performDefaultAction();
 	} catch (ArrayIndexOutOfBoundsException e) {
 	    return false;
 	}

@@ -7,16 +7,19 @@ public abstract class MapObject {
     public Image sprite;
     public Coordinates coordinates;
     public Direction direction = Direction.DOWN;
+    protected Map map;
 
-    public MapObject(Image image, int x, int y) {
+    public MapObject(Image image, Map map, int x, int y) {
 	coordinates = new Coordinates(x, y);
 	this.sprite = image;
+	this.map = map;
+	map.addObject(this);
     }
 
-    public MapObject(Image image, int x, int y, Direction direction) {
-	this(image, x, y);
+    public MapObject(Image image, int x, int y, Map map, Direction direction) {
+	this(image, map, x, y);
 	this.direction = direction;
     }
 
-    abstract public boolean performDefaultAction(Map map);
+    abstract public boolean performDefaultAction();
 }

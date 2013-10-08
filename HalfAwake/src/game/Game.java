@@ -21,7 +21,6 @@ class Game extends JPanel implements Runnable {
 
     private Map map;
     private Hero hero;
-    private Table table;
 
     public void run() {
 	init();
@@ -36,9 +35,6 @@ class Game extends JPanel implements Runnable {
     }
 
     public void start() {
-	setFocusable(true);
-	requestFocusInWindow();
-
 	running = true;
 	if (animator == null)
 	    animator = new Thread(this);
@@ -52,36 +48,29 @@ class Game extends JPanel implements Runnable {
     private void init() {
 	try {
 	    map = new Map(getWidth(), getHeight());
-	    hero = new Hero(0, 0);
-	    table = new Table(3, 3);
+	    hero = new Hero(map, 0, 0);
+	    new Table(map, 3, 3);
 	} catch (IOException e) {
 	    System.exit(1);
 	}
-	map.addObject(hero);
-	map.addObject(table);
+	
+	setFocusable(true);
+	requestFocusInWindow();
 
 	addKeyListener(new KeyAdapter() {
 	    public void keyPressed(KeyEvent e) {
 		switch(e.getKeyCode()) {
 		case KeyEvent.VK_LEFT:
-		    hero.direction = Direction.LEFT;
-		    if (map.objectMove(hero.coordinates.x, hero.coordinates.y, hero.coordinates.x-1, hero.coordinates.y))
-			--hero.coordinates.x;
+		    hero.move(Direction.LEFT);
 		    break;
 		case KeyEvent.VK_RIGHT:
-		    hero.direction = Direction.RIGHT;
-		    if (map.objectMove(hero.coordinates.x, hero.coordinates.y, hero.coordinates.x+1, hero.coordinates.y))
-			++hero.coordinates.x;
+		    hero.move(Direction.RIGHT);
 		    break;
 		case KeyEvent.VK_UP:
-		    hero.direction = Direction.UP;
-		    if (map.objectMove(hero.coordinates.x, hero.coordinates.y, hero.coordinates.x, hero.coordinates.y-1))
-			--hero.coordinates.y;
+		    hero.move(Direction.UP);
 		    break;
 		case KeyEvent.VK_DOWN:
-		    hero.direction = Direction.DOWN;
-		    if (map.objectMove(hero.coordinates.x, hero.coordinates.y, hero.coordinates.x, hero.coordinates.y+1))
-			++hero.coordinates.y;
+		    hero.move(Direction.DOWN);
 		    break;
 		case KeyEvent.VK_E:
 		    int x = hero.coordinates.x;
@@ -94,8 +83,7 @@ class Game extends JPanel implements Runnable {
 		    case DOWN: ++y; break;
 		    }
 		    map.performDefaultAction(x, y);
-		default:
-		    break;
+		default: break;
 		}
 	    }
 	});
