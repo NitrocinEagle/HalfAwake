@@ -28,7 +28,8 @@ class Game extends JPanel implements Runnable {
 
 	while(running) {
 	    try {
-	    	// author - MISSSSSTer mist
+	    	int k = 0;
+	    	k++;
 		Thread.sleep(TIME_TO_SLEEP);
 		repaint();
 	    }
